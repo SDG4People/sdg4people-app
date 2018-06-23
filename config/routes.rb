@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
-  root 'reports#index'
-  resources :reports
+  root 'pages#root'
+
+  get '/reports' => 'reports#index'
+  get '*path' => 'pages#root', via: :all
+  post '/reports' => 'reports#create'
 end
