@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
 
   def create
     Report.create(report_params)
-    render json: params
+    render json: params, status: :created
   end
 
   private
