@@ -1,6 +1,10 @@
 {
   "name": "sdg4people-app",
   "private": true,
+  "scripts": {
+    "mocha": "./node_modules/mocha/bin/mocha",
+    "test": "cross-env NODE_ENV=test mocha --require babel-register --require babel-polyfill --require isomorphic-fetch app/javascript/packs/sdg4people/components/test/"
+  },
   "dependencies": {
     "@rails/webpacker": "3.4",
     "babel-preset-react": "^6.24.1",
@@ -13,6 +17,17 @@
     "whatwg-fetch": "^2.0.4"
   },
   "devDependencies": {
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jsdom": "11.11.0",
+    "jsdom-global": "3.0.2",
+    "mocha": "^5.2.0",
+    "sinon": "^6.0.0",
     "webpack-dev-server": "2.11.2"
   }
 }
