@@ -29,7 +29,7 @@ export default class NewReport extends React.Component {
         status: 'open'
       }
     });
-    location.href = '/'
+    window.location = '/'
     event.preventDefault();
   }
 

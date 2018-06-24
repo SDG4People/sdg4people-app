@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180513005807) do
+ActiveRecord::Schema.define(version: 20180624190655) do
 
   create_table "reports", force: :cascade do |t|
     t.string "title"
@@ -18,6 +18,9 @@ ActiveRecord::Schema.define(version: 20180513005807) do
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "impact_level"
+    t.string "external_link"
+    t.string "goal"
   end
 
 end
