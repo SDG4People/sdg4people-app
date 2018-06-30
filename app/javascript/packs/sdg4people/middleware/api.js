@@ -19,6 +19,13 @@ let get = () => {
     .then(response => response.json())
     .catch(error => console.error('Error: ', error))
 }
+
+let search = (query) => {
+  return fetch('http://localhost:3000/search?query=' + query)
+    .then(response => response.json())
+    .catch(error => console.error('Error: ', error))
+}
+
 // Public API
 const createReport = (reportData) => {
   post(reportData)
@@ -31,8 +38,16 @@ const getReports = (callback) => {
     .then(data => callback(data))
     .catch(error => console.log(error))
 }
+
+const searchReports = (query, callback) => {
+  search(query)
+    .then(data => callback(data))
+    .catch(error => console.log(error))
+}
+
 // Export Api
 export const Api = {
   createReport,
-  getReports
+  getReports,
+  searchReports
 }

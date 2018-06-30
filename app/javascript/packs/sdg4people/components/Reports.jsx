@@ -26,6 +26,9 @@ export default class Reports extends React.Component {
   }
 
   _search = (query) => {
+    Api.searchReports(query, (reports) => {
+      this.setState({reports});
+    });
   }
 
   render() {

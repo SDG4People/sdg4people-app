@@ -4,17 +4,19 @@ import SearchBar from '../SearchBar';
 import { Api } from '../../middleware/api';
 
 describe('Reports', () => {
-  let component, reports, apiStub, reportsComponent;
+  let component, reports, getReportsStub, searchReportsStub, reportsComponent, query;
 
   beforeEach(() => {
-    apiStub = sinon.stub(Api, "getReports");
+    getReportsStub = sinon.stub(Api, "getReports");
+    searchReportsStub = sinon.stub(Api, "searchReports");
     component = mount(<MemoryRouter><Reports /></MemoryRouter>);
     reports = [{title: "first-report"}, {title: "second-report"}];
     reportsComponent = component.find(Reports);
   });
 
   afterEach(() => {
-    apiStub.restore(Api.getReports);
+    Api.getReports.restore();
+    Api.searchReports.restore();
   });
 
   describe('layout', () => {
@@ -30,6 +32,25 @@ describe('Reports', () => {
       component.find(Reports).instance().setState({reports});
       component.update();
       expect(component.find(ListedReport).length).to.eql(reports.length);
+    });
+  });
+
+  describe('interaction', () => {
+    describe.only('search', () => {
+      beforeEach(() => {
+        query = 'first-report';
+        reportsComponent.instance()._search(query);
+        searchReportsStub.callArgWith(1, [reports[0]])
+        component.update();
+      });
+
+      it('sends the search query over the API', () => {
+        expect(searchReportsStub).to.be.calledWith(query);
+      });
+
+      it('displays the correct results', () => {
+        expect(component.find(ListedReport).length).to.eql(1);
+      });
     });
   });
 });
