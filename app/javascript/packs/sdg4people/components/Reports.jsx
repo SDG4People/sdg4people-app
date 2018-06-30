@@ -1,5 +1,6 @@
 import React from 'react';
 import ListedReport from './ListedReport';
+import SearchBar from './SearchBar';
 import { Api } from '../middleware/api'
 import { Link } from 'react-router-dom'
 
@@ -24,10 +25,14 @@ export default class Reports extends React.Component {
     })
   }
 
+  _search = (query) => {
+  }
+
   render() {
     return (
       <div>
         <Link to="/reports/new">New Report</Link>
+        <SearchBar search={this._search} />
         {this._displayReports()}
       </div>
     )
