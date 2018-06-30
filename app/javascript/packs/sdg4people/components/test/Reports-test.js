@@ -36,7 +36,7 @@ describe('Reports', () => {
   });
 
   describe('interaction', () => {
-    describe.only('search', () => {
+    describe('search', () => {
       beforeEach(() => {
         query = 'first-report';
         reportsComponent.instance()._search(query);

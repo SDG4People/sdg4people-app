@@ -32,4 +32,18 @@ describe "ReportsController" do
       expect(Report.all.count).to eq(old_report_count + 1)
     end
   end
+
+  describe "search" do
+    let(:query) { "water" }
+    let!(:report) { Report.create(title: "We need water") }
+    let!(:wrong_report) { Report.create(title: "We need air") }
+    let(:expected_output) { [report].to_json }
+
+    it "renders results with matches in the title" do
+      get "/search", :params => { :query => query }
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to eq(expected_output)
+    end
+  end
 end

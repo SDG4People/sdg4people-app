@@ -9,6 +9,17 @@ class ReportsController < ApplicationController
     render json: params, status: :created
   end
 
+  def search
+    @reports = []
+    reports = Report.all
+    reports.each do |report|
+      if report.title.split(" ").include? params[:query]
+        @reports << report
+      end
+    end
+    render json: @reports
+  end
+
   private
 
   def report_params
